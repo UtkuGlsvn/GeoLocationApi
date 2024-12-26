@@ -11,7 +11,6 @@ import retrofit2.Response
 class GetService {
 
     companion object {
-        private val model: IpApiModel = IpApiModel()
         private val request = ServiceBuilder.buildService(EndPoints::class.java)
         private val call = request.getUserDetail()
         private var instance: GetService? = null

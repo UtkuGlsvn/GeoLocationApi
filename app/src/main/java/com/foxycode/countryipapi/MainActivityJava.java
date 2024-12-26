@@ -4,45 +4,42 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
+import com.foxycode.countryipapi.databinding.ActivityMainJavaBinding;
 import com.foxycode.geolocationip_api.GetService;
 import com.foxycode.geolocationip_api.ResponseListener;
 import com.foxycode.geolocationip_api.model.IpApiModel;
 
 import org.jetbrains.annotations.NotNull;
 
+
 public class MainActivityJava extends AppCompatActivity implements ResponseListener {
 
-    private GetService getService = new GetService();
-    TextView txtViewCountry,txtViewIp,txtViewCountryCode,txtViewRegion,txtViewCity;
+    private final GetService getService = new GetService();
+    private ActivityMainJavaBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_java);
+        binding = ActivityMainJavaBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         getService.Instance().getModel(this);
         initView();
     }
 
-    private void initView()
-    {
-        txtViewCity=findViewById(R.id.txtViewCity);
-        txtViewCountry=findViewById(R.id.txtViewCountry);
-        txtViewIp=findViewById(R.id.txtViewIp);
-        txtViewCountryCode=findViewById(R.id.txtViewCountryCode);
-        txtViewRegion=findViewById(R.id.txtViewRegion);
+    private void initView() {
+
     }
+
     @Override
     public void onSuccessResult(@NotNull IpApiModel obj) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                txtViewCountry.setText(obj.getCountry());
-                txtViewIp.setText(obj.getIpQuery());
-                txtViewCountryCode.setText(obj.getCountryCode());
-                txtViewRegion.setText(obj.getRegionName());
-                txtViewCity.setText(obj.getCity());
-            }
+        runOnUiThread(() -> {
+            binding.txtViewCountry.setText(obj.getCountry());
+            binding.txtViewIp.setText(obj.getIsp());
+            binding.txtViewCountryCode.setText(obj.getCountryCode());
+            binding.txtViewRegion.setText(obj.getRegionName());
+            binding.txtViewCity.setText(obj.getCity());
         });
     }
 
