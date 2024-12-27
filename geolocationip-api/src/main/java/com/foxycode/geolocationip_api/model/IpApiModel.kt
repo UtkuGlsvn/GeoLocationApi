@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class IpApiModel(
     @SerializedName("as")
-    val asX: String,
+    val autonomousSystem: String,
     @SerializedName("city")
     val city: String,
     @SerializedName("country")
@@ -13,7 +13,7 @@ data class IpApiModel(
     @SerializedName("countryCode")
     val countryCode: String,
     @SerializedName("isp")
-    val isp: String,
+    val internetServiceProvider: String,
     @SerializedName("lat")
     val lat: Double,
     @SerializedName("lon")
@@ -21,7 +21,7 @@ data class IpApiModel(
     @SerializedName("org")
     val org: String,
     @SerializedName("query")
-    val query: String,
+    val ipQuery: String,
     @SerializedName("region")
     val region: String,
     @SerializedName("regionName")
@@ -31,5 +31,5 @@ data class IpApiModel(
     @SerializedName("timezone")
     val timezone: String,
     @SerializedName("zip")
-    val zip: String
+    val postalCode: String
 )

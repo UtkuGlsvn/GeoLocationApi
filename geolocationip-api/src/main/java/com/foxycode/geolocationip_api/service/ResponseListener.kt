@@ -1,4 +1,4 @@
-package com.foxycode.geolocationip_api
+package com.foxycode.geolocationip_api.service
 
 import com.foxycode.geolocationip_api.model.IpApiModel
 

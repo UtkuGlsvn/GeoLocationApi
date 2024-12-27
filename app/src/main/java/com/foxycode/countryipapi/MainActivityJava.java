@@ -1,21 +1,19 @@
 package com.foxycode.countryipapi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.foxycode.countryipapi.databinding.ActivityMainJavaBinding;
-import com.foxycode.geolocationip_api.GetService;
-import com.foxycode.geolocationip_api.ResponseListener;
+import com.foxycode.geolocationip_api.IpAddressPresenter;
+import com.foxycode.geolocationip_api.IpAddressView;
 import com.foxycode.geolocationip_api.model.IpApiModel;
 
-import org.jetbrains.annotations.NotNull;
 
+public class MainActivityJava extends AppCompatActivity implements IpAddressView {
 
-public class MainActivityJava extends AppCompatActivity implements ResponseListener {
-
-    private final GetService getService = new GetService();
+    private final IpAddressPresenter presenter = new IpAddressPresenter(this);
     private ActivityMainJavaBinding binding;
 
     @Override
@@ -24,7 +22,7 @@ public class MainActivityJava extends AppCompatActivity implements ResponseListe
         binding = ActivityMainJavaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getService.Instance().getModel(this);
+        presenter.getUserDetails();
         initView();
     }
 
@@ -33,18 +31,18 @@ public class MainActivityJava extends AppCompatActivity implements ResponseListe
     }
 
     @Override
-    public void onSuccessResult(@NotNull IpApiModel obj) {
+    public void showData(@NonNull IpApiModel model) {
         runOnUiThread(() -> {
-            binding.txtViewCountry.setText(obj.getCountry());
-            binding.txtViewIp.setText(obj.getIsp());
-            binding.txtViewCountryCode.setText(obj.getCountryCode());
-            binding.txtViewRegion.setText(obj.getRegionName());
-            binding.txtViewCity.setText(obj.getCity());
+            binding.txtViewCountry.setText(model.getCountry());
+            binding.txtViewIp.setText(model.getIpQuery());
+            binding.txtViewCountryCode.setText(model.getCountryCode());
+            binding.txtViewRegion.setText(model.getRegionName());
+            binding.txtViewCity.setText(model.getCity());
         });
     }
 
     @Override
-    public void onErrorResult(@NotNull String msg) {
-        Log.e("error", msg);
+    public void showError(@NonNull String msg) {
+
     }
 }

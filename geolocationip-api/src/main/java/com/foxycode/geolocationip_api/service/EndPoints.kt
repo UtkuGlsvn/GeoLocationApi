@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface EndPoints {
 
-    @GET("/json/")
+    @GET("/json")
     fun getUserDetail(): Call<IpApiModel>
 }
