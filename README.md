@@ -1,5 +1,9 @@
 # GeoLocationApi
 
+The GitHub repository "GeoLocationApi" by UtkuGlsvn is an Android library that uses Retrofit and Kotlin to request geographic location information from IP-API.com. The library provides functionalities to retrieve data such as IP address, country, country code, city, and region. Users can add the library to their projects by including it in their build.gradle dependencies and utilize it in Android applications to access location details programmatically.
+
+
+
 IP-API(http://ip-api.com/json) send request  for Android platform using Retrofit and kotlin. Get your geographic location information. Ip adress, country, country code etc
 
 <img src="https://github.com/UtkuGlsvn/GeoLocationApi/blob/master/ExampleApp.jpeg" width="250" height="350">
@@ -19,7 +23,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        implementation 'com.github.UtkuGlsvn:GeoLocationApi:1.1'
+	        implementation 'com.github.UtkuGlsvn:GeoLocationApi:1.1.0'
 	}
 
 
